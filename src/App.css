@@ -1,38 +1,407 @@
-.App {
-  text-align: center;
-}
+/* public/styles.css */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes comeIN {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 5px;
+  width: 100%;
+  max-width: 800px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.row {
+  justify-content: space-between;
+  /* Adjust as needed */
+  align-items: center;
+  /* Center the items vertically within the flex row */
+
+  display: flex;
+  align-self: center;
+}
+
+.cell {
+  display: grid;
+  width: 58px;
+  height: 60px;
+  text-align: center;
+  font-size: 45px;
+  margin: 1px;
+  background-color: #423c3c;
+  line-height: 100%;
+  align-content: center;
+  color: aliceblue;
+  font-family: sans-serif;
+  font-weight: bolder;
+  border-radius: 10px;
+  text-transform: uppercase;
+  user-select: none;
+  border: 2px solid #b5b5b5;
+  border-radius: 8px;
+}
+
+
+.enter {
+
+  display: grid;
+  width: 33px;
+  height: 32px;
+  text-align: center;
+  font-size: 19px;
+  /* margin: 1px; */
+  background-color: #000000;
+  align-content: center;
+  color: rgb(255, 255, 255);
+  font-style: bold;
+  border-radius: 80px;
+  cursor: pointer;
+  user-select: none;
+
+
+}
+
+/* Add your global styles here */
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #0f3c5a;
+  color: #fff;
+  border-radius: 7px;
+  margin-bottom: 2px;
+  user-select: none;
+
+  margin-top: 2px;
+
+}
+
+.navbar-title {
+  font-family: system-ui;
+  font-style: oblique;
+  font-stretch: expanded;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.navbar-icons {
+  display: flex;
+}
+
+.icon {
+  font-size: 24px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.keyboard {
+  position: relative;
+  bottom: -13%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
+  /* left: 36.4%; */
+}
+
+
+.key-row {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+
+
+.key {
+
+  width: 29px;
+  height: 36px;
+  text-align: center;
+  font-size: 19px;
+  background-color: #ffffff;
+  line-height: 193%;
+  color: rgb(0, 0, 0);
+  font-family: sans-serif;
+  font-weight: bolder;
+  border-radius: 10px;
+  text-transform: uppercase;
+  border: 2px solid #000000;
+  user-select: none;
+
+}
+
+.settings-menu {
+  position: absolute;
+  display: flex;
+  top: 17px;
+  right: -20px;
+  background-color: #342a2a;
+  z-index: 1;
+  height: 90vh;
+  width: 0;
+  justify-content: space-between;
+  border-radius: 8px;
+  border: 1px solid var(--color-tone-6);
+  background-color: var(--modal-content-bg);
+  color: var(--color-tone-1);
+  box-shadow: 0 4px 23px 0 rgba(0, 0, 0, .2);
+  width: 90%;
+  max-height: 100%;
+  animation: Modal-module_SlideIn__BF5gw 200ms;
+  padding: 16px;
+  padding-right: 50px;
+  box-sizing: border-box;
+
+
+}
+
+.settings-menu.active {
+  animation: comeIN .8s ease-in, fadeIn .6s ease-in;
+
+  max-width: 23%;
+  /* min-width: 25vh; */
+}
+
+
+.setting {
+  display: flex;
+  cursor: pointer;
+  margin-bottom: 5px;
+  max-height: 18px;
+  max-width: 27px;
+
+}
+
+
+
+
+.green {
+  background-color: rgb(54, 122, 54);
+}
+
+.orange {
+  background-color: #c69233;
+}
+
+.gray {
+  background-color: #353535;
+
+}
+
+.grayKey {
+  background-color: #696662;
+
+}
+
+.popup-content {
+
+  position: absolute;
+  padding: 8px;
+  display: flex;
+  top: 114px;
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 42vh;
+  height: 27vh;
+  z-index: 1;
+  background-color: #292929;
+  color: white;
+  font-size: 27px;
+  font-weight: bolder;
+  font-family: serif;
+  color: white;
+  font-size: 27px;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 96%;
+  box-shadow: 0px 6px 14px 2px #ffffff69;
+  flex-direction: column;
+  /* align-content: flex-end; */
+  flex-wrap: nowrap;
+
+}
+
+.howtoplay {
+  animation: fadeIn .4s ease-in;
+  position: absolute;
+  padding: 13px;
+  padding-top: 0;
+  display: flex;
+  top: 92px;
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 38vh;
+  height: 52vh;
+  z-index: 100;
+  background-color: #2a2a31;
+  /* color: white; */
+  /* font-size: 27px; */
+  font-weight: bolder;
+  font-family: serif;
+  color: white;
+  font-size: 14px;
+  justify-content: center;
+  align-items: flex-start;
+  opacity: 98%;
+  box-shadow: 0px 0px 9px 0px #ffffff69;
+  /* align-content: center; */
+  flex-wrap: nowrap;
+  flex-direction: column;
+  user-select: none;
+}
+
+.playagain {
+  display: flex;
+  font-family: system-ui;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: bold;
+  color: black;
+
+  padding: 2px;
+  padding-right: 6px;
+  padding-left: 6px;
+  cursor: pointer;
+}
+
+@keyframes vibrate {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-8px);
+  }
+
+  50% {
+    transform: translateX(8px);
+  }
+
+  75% {
+    transform: translateX(-8px);
+  }
+
+  100% {
+    transform: translateX(8px);
+  }
+}
+
+
+
+.wrongword-content {
+  animation: vibrate 0.3s infinite, fadeOut .9s ease-out;
+
+
+  position: absolute;
+  padding: 5px;
+  display: flex;
+  border: 1px solid #b1b1b1;
+  border-radius: 8px;
+  width: 33vh;
+  height: 3vh;
+  line-height: 107%;
+  z-index: 1;
+  background-color: #19191c;
+  top: 237px;
+  /* left: 11%; */
+  font-weight: bolder;
+  font-family: serif;
+  color: white;
+  font-size: 20px;
+  justify-content: space-between;
+  opacity: 90%;
+  box-shadow: 0px 2px 14px 2px #ffffff33;
+  flex-direction: column;
+  user-select: none;
+  flex-wrap: nowrap;
+  margin-left: 39px;
+  align-items: center;
+  list-style-type: square;
+}
+
+
+
+
+ul {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-wrap: nowrap;
+  align-items: flex-start;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-left: 25px;
+  margin-top: -9px;
 }
 
-.App-link {
-  color: #61dafb;
+
+li {
+  /* Your styles here */
+  list-style-type: square;
+  /* For example, using square bullets */
+
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+img {
+  width: 112px;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+
+h1 {
+  margin-bottom: 2px;
+}
+
+.enter {
+  position: relative;
+  height: 39px;
+  width: 39px;
 }
