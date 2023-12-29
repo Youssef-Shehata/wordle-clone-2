@@ -40,6 +40,12 @@ const NavBar = () => {
         <p>U is not in the word in any spot.</p>
         <img src={word3}></img>
 
+        <div className='info'>
+          <p>this website is a clone of NewYorkTimes Wordle game,</p>
+          <p>its made purely for practice and we claim no ownership of the game.</p>
+          <p className='sh7tt'>-sha7toot and his partners</p>
+        </div>
+
 
       </>
 

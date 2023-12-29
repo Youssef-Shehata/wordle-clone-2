@@ -114,9 +114,11 @@ body {
   color: #fff;
   border-radius: 7px;
   margin-bottom: 2px;
+  -webkit-user-select: none;
   user-select: none;
+  margin-top: -6px;
+  height: 53px;
 
-  margin-top: 2px;
 
 }
 
@@ -140,7 +142,8 @@ body {
 
 .keyboard {
   position: relative;
-  bottom: -13%;
+  bottom: -79px;
+
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   width: 100%;
@@ -238,11 +241,10 @@ body {
 }
 
 .popup-content {
-
   position: absolute;
   padding: 8px;
   display: flex;
-  top: 114px;
+  /* top: 114px; */
   border: 1px solid white;
   border-radius: 10px;
   width: 42vh;
@@ -262,7 +264,13 @@ body {
   flex-direction: column;
   /* align-content: flex-end; */
   flex-wrap: nowrap;
-
+  min-width: 304px;
+  min-height: 188px;
+  /* left: 39vw; */
+  -webkit-user-select: none;
+  user-select: none;
+  max-width: 304px;
+  max-height: 188px;
 }
 
 .howtoplay {
@@ -275,7 +283,7 @@ body {
   border: 2px solid white;
   border-radius: 10px;
   width: 38vh;
-  height: 52vh;
+  height: 63vh;
   z-index: 100;
   background-color: #2a2a31;
   /* color: white; */
@@ -291,7 +299,13 @@ body {
   /* align-content: center; */
   flex-wrap: nowrap;
   flex-direction: column;
+  -webkit-user-select: none;
   user-select: none;
+  min-width: 273px;
+  min-height: 480px;
+  max-width: 273px;
+  max-height: 480px;
+  padding-bottom: 0px;
 }
 
 .playagain {
@@ -337,12 +351,13 @@ body {
 
 
   position: absolute;
-  padding: 5px;
+  padding: 3px;
+  padding-inline: 30px;
   display: flex;
   border: 1px solid #b1b1b1;
   border-radius: 8px;
-  width: 33vh;
-  height: 3vh;
+  /* width: 33vh;
+  height: 3vh; */
   line-height: 107%;
   z-index: 1;
   background-color: #19191c;
@@ -359,8 +374,17 @@ body {
   user-select: none;
   flex-wrap: nowrap;
   margin-left: 39px;
+  align-items: space-between;
   align-items: center;
   list-style-type: square;
+  min-width: max-content;
+  min-height: max-content;
+  max-width: 200px;
+  max-height: 80px;
+
+
+
+
 }
 
 
@@ -404,4 +428,24 @@ h1 {
   position: relative;
   height: 39px;
   width: 39px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  font-size: 10px;
+  font-family: sans-serif;
+  font-weight: normal;
+  align-content: flex-start;
+  margin-top: 26px;
+  justify-content: flex-end;
+
+}
+
+.sh7tt {
+  align-self: flex-end;
+  padding: 9px;
+
 }

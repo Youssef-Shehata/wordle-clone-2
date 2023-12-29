@@ -3,6 +3,8 @@ import './App.css';
 import words from './words.json';
 import NavBar from './Components/NavBar';
 import KeyboardLayout from './Components/KeyboardLayout';
+import PopUp from './Components/PopUp';
+import InvalidWordo from './Components/InvalidWordo';
 
 
 const colorLetter = (word, solution) => {
@@ -74,11 +76,16 @@ function App() {
   const [current, setCurrent] = useState("")
   const [keyHist, setKeyHist] = useState({})
   const [colors, setColors] = useState(Array(6).fill(Array(5)))
+  const [won, setWon] = useState(false)
+  const [popo, setpopo] = useState(false)
+  const [invalid, setInvalid] = useState(false)
 
+
+  const updateSolution = () => {
+    setSolution(words[Math.floor(Math.random() * words.length)])
+  }
   useEffect(() => {
-    const updateSolution = () => {
-      setSolution(words[Math.floor(Math.random() * words.length)])
-    }
+
     updateSolution()
   }, [])
 
@@ -90,17 +97,49 @@ function App() {
     setKeyHist(newKeyHist)
   }, [attempts])
 
+
+
   const handleSubmit = () => {
     if (current.length !== 5) return
-    // if (words.indexOf(current) === -1) return
+    if (words.indexOf(current) === -1) {
+      setInvalid(true)
+      setTimeout(() => {
+        setInvalid(false)
+
+      }, 500)
+      return
+    }
 
     let index = attempts.findIndex((guess) => guess === null)
     let newAttempts = [...attempts]
+    let newColors = [...colors]
     newAttempts[index] = current
-    colors[index] = colorLetter(current, solution)
+    newColors[index] = colorLetter(current, solution)
     setAttempts(newAttempts)
+    setColors(newColors)
     setCurrent('')
+
+
   }
+
+  useEffect(() => {
+    const calcGame = () => {
+      if (attempts.indexOf(null) === -1) {
+        if (attempts[5] === solution) {
+          setWon(true)
+          setpopo(true)
+
+        } else {
+          setpopo(true)
+        }
+      } else if (attempts[attempts.indexOf(null) - 1] === solution) {
+        setWon(true)
+        setpopo(true)
+      }
+    }
+    calcGame()
+  }, [attempts])
+
 
 
   useEffect(() => {
@@ -129,11 +168,24 @@ function App() {
 
 
 
+  const handlePlayAgain = () => {
+    updateSolution()
+    setAttempts(Array(6).fill(null))
+    setCurrent('')
+    setKeyHist({})
+    setColors(Array(6).fill(Array(5)))
+    setWon(false)
+    setpopo(false)
+
+  }
+
+
   return (
     <div className="App">
       <NavBar />
       <div className='grid'>
-        {solution}
+        {popo && <PopUp onPlayAgain={handlePlayAgain} won={won} solution={solution} />}
+        {invalid && <InvalidWordo />}
         {attempts.map((attempt, idx) => {
           const isCurrent = idx === attempts.findIndex((guess) => guess === null)
           return (<Row key={idx} word={isCurrent ? current : attempt} color={colors[idx]} />)
