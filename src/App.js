@@ -50,6 +50,13 @@ const coloring = (attempts, solution) => {
 }
 
 const Row = ({ word, color }) => {
+  const [isKeyboardOpen, setKeyboardOpen] = useState(false);
+
+  const handleDivTouch = () => {
+    // Open the keyboard by setting isKeyboardOpen to true
+    setKeyboardOpen(true);
+  };
+
   let splittedWord = ''
   if (word === '' || word === null) {
     splittedWord = ['', '', '', '', '']
@@ -61,8 +68,18 @@ const Row = ({ word, color }) => {
       {
         Array(5).fill(' ').map((space, idx) => {
           let letter = splittedWord[idx]
+
           return (
-            < div key={idx} className={`cell ${color[idx]}`} > {letter ? letter : space} </div>
+
+            < div key={idx} className={`cell ${color[idx]}`} onTouchStart={handleDivTouch} > {letter ? letter : space}
+              {isKeyboardOpen && (
+                <input
+                  type="text"
+                  style={{ position: 'absolute', top: '-100px' }} // Move the input off-screen
+                  onBlur={() => setKeyboardOpen(false)} // Close the keyboard when the input loses focus
+                />
+              )}
+            </div>
           )
         })
       }
@@ -79,7 +96,6 @@ function App() {
   const [won, setWon] = useState(false)
   const [popo, setpopo] = useState(false)
   const [invalid, setInvalid] = useState(false)
-
 
   const updateSolution = () => {
     setSolution(words[Math.floor(Math.random() * words.length)])
@@ -183,7 +199,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <div className='grid'>
+      <div className='grid' >
         {popo && <PopUp onPlayAgain={handlePlayAgain} won={won} solution={solution} />}
         {invalid && <InvalidWordo />}
         {attempts.map((attempt, idx) => {
@@ -191,6 +207,7 @@ function App() {
           return (<Row key={idx} word={isCurrent ? current : attempt} color={colors[idx]} />)
 
         })}
+
       </div>
       <KeyboardLayout keyColors={keyHist} />
     </div>
