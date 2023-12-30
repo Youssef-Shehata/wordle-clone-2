@@ -315,11 +315,16 @@ body {
   font-style: italic;
   font-weight: bold;
   color: black;
-
-  padding: 2px;
-  padding-right: 6px;
-  padding-left: 6px;
+  padding: 5px;
   cursor: pointer;
+  padding-inline: 13px;
+  background: #ffffff;
+  border: none;
+  border-radius: 5px;
+}
+
+.playagain:hover {
+  background: linear-gradient(45deg, #fdfdfd, #1f5ae0);
 }
 
 @keyframes vibrate {
@@ -425,6 +430,12 @@ h1 {
 }
 
 .enter {
+  position: relative;
+  height: 39px;
+  width: 39px;
+}
+
+.backspace {
   position: relative;
   height: 39px;
   width: 39px;
