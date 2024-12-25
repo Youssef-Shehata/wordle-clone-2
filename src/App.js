@@ -175,10 +175,10 @@ function App() {
     const handleKey = (e) => {
 
       let key = e.key
-      if (key === 'Backspace') {
+      if (key.toLowerCase()=== 'backspace' ) {
         setCurrent(prevWord => prevWord.slice(0, -1));
       }
-      if (key === 'Enter') {
+      if (key.toLowerCase()=== 'enter') {
         handleSubmit()
       }
       if (/[a-zA-Z]/.test(key) && key.length === 1 && current.length < 5) {
